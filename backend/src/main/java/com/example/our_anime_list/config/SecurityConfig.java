@@ -1,7 +1,7 @@
 package com.example.our_anime_list.config;
 
 import com.example.our_anime_list.filter.JwtAuthFilter;
-import com.example.our_anime_list.service.CustomerService;
+import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +30,7 @@ public class SecurityConfig {
     // User Creation
     @Bean
     public UserDetailsService userDetailsService() {
-        return new CustomerService();
+        return new UserService();
     }
 
     @Bean
@@ -55,7 +55,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/entry", "/entry/**", "/auth/generateToken").permitAll())
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                //.authorizeHttpRequests(auth -> auth.requestMatchers("/users", "/users/**", "/entry", "/entry/**").permitAll())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
