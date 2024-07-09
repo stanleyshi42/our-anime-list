@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     UserService service;
@@ -18,8 +19,14 @@ public class UserController {
         return service.addUser(user);
     }
     @GetMapping("/{userId}")
-    public ArrayList<User> getUsersById(@RequestBody long userid){
+    public ArrayList<User> getUsersById(@PathVariable long userid){
         return (ArrayList<User>) service.getUserByUserId(userid);
+    }
+
+    @GetMapping("/user/{username}")
+    public ArrayList<User> getUserByUsername(@PathVariable String username){
+        return (ArrayList<User>) service.getByUsername(username);
+
     }
 
     @GetMapping("/all")
