@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
         return repo.findAll();
     }
 
-    public User getUserByUserId(long id) {
+    public User getUserById(long id) {
         return repo.findById(id).orElse(null);
     }
 
