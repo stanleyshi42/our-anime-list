@@ -17,9 +17,9 @@ public class UserController {
     public Users addUser(@RequestBody Users user){
         return service.addUser(user);
     }
-    @GetMapping()
-    public ArrayList<Users> getUsersById(@RequestBody long id){
-        return (ArrayList<Users>) service.getUserByUserId(id);
+    @GetMapping("/{userId}")
+    public ArrayList<Users> getUsersById(@RequestBody long userid){
+        return (ArrayList<Users>) service.getUserByUserId(userid);
     }
 
     @GetMapping("/all")
@@ -32,9 +32,9 @@ public class UserController {
         return service.updateUsers(user);
     }
 
-    @DeleteMapping()
-    public boolean deleteUserById(long id) {
-        service.deleteUserById(id);
+    @DeleteMapping("/{userId}")
+    public boolean deleteUserById(long userId) {
+        service.deleteUserById(userId);
         return true;
     }
 
