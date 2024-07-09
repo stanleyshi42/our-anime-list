@@ -1,7 +1,7 @@
 package com.example.our_anime_list.service;
 
 import com.example.our_anime_list.repository.UserRepository;
-import com.example.our_anime_list.entity.Users;
+import com.example.our_anime_list.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ public class UserService {
     @Autowired
     UserRepository repo;
 
-    public Users addUser(Users user){ return repo.save(user);}
+    public User addUser(User user){ return repo.save(user);}
 
-    public List<Users>getUserByUserId(long userId){
+    public List<User>getUserByUserId(long userId){
         return repo.findByUserId(userId);
     }
-    public List<Users> getAllUsers(){
+    public List<User> getAllUsers(){
         return repo.findAll();
     }
-    public Users updateUsers(Users user){
+    public User updateUsers(User user){
         return repo.save(user);
     }
     public void deleteUserById(long id){

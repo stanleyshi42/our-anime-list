@@ -1,6 +1,6 @@
 package com.example.our_anime_list.controller;
 
-import com.example.our_anime_list.entity.Users;
+import com.example.our_anime_list.entity.User;
 import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,27 +14,27 @@ public class UserController {
     UserService service;
 
     @PostMapping()
-    public Users addUser(@RequestBody Users user){
+    public User addUser(@RequestBody User user){
         return service.addUser(user);
     }
-    @GetMapping()
-    public ArrayList<Users> getUsersById(@RequestBody long id){
-        return (ArrayList<Users>) service.getUserByUserId(id);
+    @GetMapping("/{userId}")
+    public ArrayList<User> getUsersById(@RequestBody long userid){
+        return (ArrayList<User>) service.getUserByUserId(userid);
     }
 
     @GetMapping("/all")
-    public ArrayList<Users> getAllEntries() {
-        return (ArrayList<Users>) service.getAllUsers();
+    public ArrayList<User> getAllEntries() {
+        return (ArrayList<User>) service.getAllUsers();
     }
 
     @PutMapping()
-    public Users updateUser(Users user) {
+    public User updateUser(User user) {
         return service.updateUsers(user);
     }
 
-    @DeleteMapping()
-    public boolean deleteUserById(long id) {
-        service.deleteUserById(id);
+    @DeleteMapping("/{userId}")
+    public boolean deleteUserById(long userId) {
+        service.deleteUserById(userId);
         return true;
     }
 
