@@ -31,14 +31,13 @@ public class EntryController {
     }
 
     @PutMapping()
-    public Entry updateEntry(Entry entry) {
+    public Entry updateEntry(@RequestBody Entry entry) {
         return service.updateEntry(entry);
     }
 
     @DeleteMapping()
-    public boolean deleteEntryById(long id) {
+    public void deleteEntryById(@RequestBody long id) {
         service.deleteEntryById(id);
-        return true;
     }
 
 }
