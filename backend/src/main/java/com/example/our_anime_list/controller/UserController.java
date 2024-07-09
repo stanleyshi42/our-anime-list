@@ -1,6 +1,6 @@
 package com.example.our_anime_list.controller;
 
-import com.example.our_anime_list.entity.Users;
+import com.example.our_anime_list.entity.User;
 import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +14,21 @@ public class UserController {
     UserService service;
 
     @PostMapping()
-    public Users addUser(@RequestBody Users user){
+    public User addUser(@RequestBody User user){
         return service.addUser(user);
     }
     @GetMapping("/{userId}")
-    public ArrayList<Users> getUsersById(@RequestBody long userid){
-        return (ArrayList<Users>) service.getUserByUserId(userid);
+    public ArrayList<User> getUsersById(@RequestBody long userid){
+        return (ArrayList<User>) service.getUserByUserId(userid);
     }
 
     @GetMapping("/all")
-    public ArrayList<Users> getAllEntries() {
-        return (ArrayList<Users>) service.getAllUsers();
+    public ArrayList<User> getAllEntries() {
+        return (ArrayList<User>) service.getAllUsers();
     }
 
     @PutMapping()
-    public Users updateUser(Users user) {
+    public User updateUser(User user) {
         return service.updateUsers(user);
     }
 
