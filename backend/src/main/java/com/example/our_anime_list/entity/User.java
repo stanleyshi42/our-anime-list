@@ -9,17 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long userId;
+    @Column(unique = true)
     private String username;
     private String password;
     private String avatar_url;
     private String bio;
-    private String role;
-
-
+    private String roles;
 
 }
