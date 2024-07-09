@@ -5,6 +5,7 @@ import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -55,8 +56,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/entry", "/entry/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.PUT, "/users/**", "/entry", "/entry/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.DELETE, "/users/**", "/entry", "/entry/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/users", "/users/**", "/entry", "/entry/**").permitAll())
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                //.authorizeHttpRequests(auth -> auth.requestMatchers("/users", "/users/**", "/entry", "/entry/**").permitAll())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)

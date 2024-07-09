@@ -44,7 +44,7 @@ public class UserController {
 
     @GetMapping("/id/{id}")
     public User getUserById(@PathVariable long id) {
-        return userService.getUserByUserId(id);
+        return userService.getUserById(id);
     }
 
     @GetMapping("/username/{username}")
@@ -58,13 +58,13 @@ public class UserController {
     }
 
     @PutMapping()
-    public User updateUser(User user) {
+    public User updateUser(@RequestBody User user) {
         return userService.updateUsers(user);
     }
 
-    @DeleteMapping("/{userId}")
-    public boolean deleteUserById(long userId) {
-        userService.deleteUserById(userId);
+    @DeleteMapping("/{id}")
+    public boolean deleteUserById(@PathVariable long id) {
+        userService.deleteUserById(id);
         return true;
     }
 
