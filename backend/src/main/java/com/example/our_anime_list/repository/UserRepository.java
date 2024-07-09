@@ -1,6 +1,6 @@
-package our_anime_list.backend.user_list.repository;
+package com.example.our_anime_list.repository;
 
-import our_anime_list.backend.user_list.entity.Users;
+import com.example.our_anime_list.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

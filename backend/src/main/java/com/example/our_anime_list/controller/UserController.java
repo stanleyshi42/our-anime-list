@@ -1,7 +1,7 @@
-package our_anime_list.backend.user_list.controller;
+package com.example.our_anime_list.controller;
 
-import our_anime_list.backend.user_list.service.UserService;
-import our_anime_list.backend.user_list.entity.Users;
+import com.example.our_anime_list.entity.Users;
+import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

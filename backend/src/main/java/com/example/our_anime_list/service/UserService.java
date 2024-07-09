@@ -1,7 +1,7 @@
-package our_anime_list.backend.user_list.service;
+package com.example.our_anime_list.service;
 
-import our_anime_list.backend.user_list.entity.Users;
-import our_anime_list.backend.user_list.repository.UserRepository;
+import com.example.our_anime_list.repository.UserRepository;
+import com.example.our_anime_list.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

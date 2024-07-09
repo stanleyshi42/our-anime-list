@@ -1,4 +1,4 @@
-package our_anime_list.backend.user_list.entity;
+package com.example.our_anime_list.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
