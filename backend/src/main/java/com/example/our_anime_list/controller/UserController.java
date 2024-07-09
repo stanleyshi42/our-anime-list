@@ -26,6 +26,7 @@ public class UserController {
     @GetMapping("/user/{username}")
     public ArrayList<User> getUserByUsername(@PathVariable String username){
         return (ArrayList<User>) service.getByUsername(username);
+
     }
 
     @GetMapping("/all")
