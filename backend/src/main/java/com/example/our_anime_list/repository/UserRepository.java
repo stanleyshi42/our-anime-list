@@ -9,13 +9,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-    List<User> findByUserId(Long userId);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 
+    /*
     @Query(value = "SELECT * from user i WHERE i.username = :username",nativeQuery = true)
     ArrayList<User> findByUsername(@Param("username") String username);
-
+    */
 }
