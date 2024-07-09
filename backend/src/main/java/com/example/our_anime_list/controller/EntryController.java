@@ -3,6 +3,8 @@ package com.example.our_anime_list.controller;
 import com.example.our_anime_list.entity.Entry;
 import com.example.our_anime_list.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,8 +23,8 @@ public class EntryController {
     }
 
     @GetMapping()
-    public ArrayList<Entry> getEntriesByUserId(@RequestBody long id) {
-        return (ArrayList<Entry>) service.getEntriesByUserId(id);
+    public ArrayList<Entry> getEntriesByUserId(@RequestBody long userId) {
+        return (ArrayList<Entry>) service.getEntriesByUserId(userId);
     }
 
     @GetMapping("/all")
@@ -36,8 +38,9 @@ public class EntryController {
     }
 
     @DeleteMapping()
-    public void deleteEntryById(@RequestBody long id) {
+    public ResponseEntity deleteEntryById(@RequestBody long id) {
         service.deleteEntryById(id);
+        return new ResponseEntity(HttpStatusCode.valueOf(204));
     }
 
 }
