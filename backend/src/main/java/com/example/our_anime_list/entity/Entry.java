@@ -1,5 +1,6 @@
 package com.example.our_anime_list.entity;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,32 +8,24 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Entry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private int userId;
-    private int malId;
+    @Nonnull
+    private long userId;
+    @Nonnull
+    private long malId;     // MyAnimeList ID
     private String title;
     private int totalEpisodes;
-    private int episodesWatched = 0;
+    private int episodesWatched;
+    private String[] genres;
     private WatchStatus status;
-    private int score = 0;
-    private boolean favorite = false;
+    private int score;
+    private boolean favorite;
 
-    // Most args constructor
-    public Entry(int userId, int malId, String title, int totalEpisodes, int episodesWatched, WatchStatus status, int score, boolean favorite) {
-        this.userId = userId;
-        this.malId = malId;
-        this.title = title;
-        this.totalEpisodes = totalEpisodes;
-        this.episodesWatched = episodesWatched;
-        this.status = status;
-        this.score = score;
-        this.favorite = favorite;
-    }
 }
