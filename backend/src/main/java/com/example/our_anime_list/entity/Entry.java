@@ -19,10 +19,11 @@ public class Entry {
     @Nonnull
     private long userId;
     @Nonnull
-    private long malId;
+    private long malId;     // MyAnimeList ID
     private String title;
     private int totalEpisodes;
     private int episodesWatched;
+    private String[] genres;
     private WatchStatus status;
     private int score;
     private boolean favorite;
