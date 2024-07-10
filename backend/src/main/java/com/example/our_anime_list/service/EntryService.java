@@ -17,8 +17,20 @@ public class EntryService {
         return repo.save(entry);
     }
 
+    public Entry getEntryById(long id){
+        return repo.findById(id).orElse(null);
+    }
+
     public List<Entry> getEntriesByUserId(long userId) {
         return repo.findByUserId(userId);
+    }
+
+    public List<Entry> getEntriesByMalId(long malId) {
+        return repo.findByMalId(malId);
+    }
+
+    public List<Entry> getFavoriteEntriesByUserId(long userId){
+        return repo.findByUserIdAndFavoriteTrue(userId);
     }
 
     public List<Entry> getAll() {

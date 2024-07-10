@@ -1,6 +1,7 @@
 package com.example.our_anime_list.controller;
 
 import com.example.our_anime_list.entity.Entry;
+import com.example.our_anime_list.entity.WatchStatus;
 import com.example.our_anime_list.service.EntryService;
 import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class EntryController {
     @PostMapping()
     public Entry addEntry(@RequestBody Entry entry) {
         entry.setId(0); // Ensure that ID is auto-generated
+        if (entry.getStatus() == null)
+            entry.setStatus(WatchStatus.PLAN_TO_WATCH);
+        if (entry.getScore() < 0)
+            entry.setScore(0);
+        if (entry.getScore() > 100)
+            entry.setScore(100);
 
         // From security context, get username so that we can get user ID
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -37,6 +44,11 @@ public class EntryController {
     @GetMapping()
     public ArrayList<Entry> getEntriesByUserId(@RequestBody long userId) {
         return (ArrayList<Entry>) entryService.getEntriesByUserId(userId);
+    }
+
+    @GetMapping("/favorite")
+    public ArrayList<Entry> getFavoriteEntriesByUserId(@RequestBody long userId) {
+        return (ArrayList<Entry>) entryService.getFavoriteEntriesByUserId(userId);
     }
 
     @GetMapping("/all")
