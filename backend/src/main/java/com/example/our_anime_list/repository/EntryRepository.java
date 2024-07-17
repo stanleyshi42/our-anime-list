@@ -16,10 +16,15 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
     List<Entry> findByUserIdAndFavoriteTrue(long userId);
 
     // Sitewide stat aggregation for a specific anime
+
     @Query("SELECT COUNT(*) FROM Entry e WHERE e.malId = ?1")
     Optional<Integer> countByMalId(long malId);
 
-    @Query("SELECT AVG(e.score) FROM Entry e WHERE e.malId = ?1")
+    @Query("SELECT COUNT(*) FROM Entry e WHERE e.malId = ?1 AND e.favorite = TRUE")
+    Optional<Integer> countFavoritesByMalId(long malId);
+
+    // Get average score, ignoring a score of 0
+    @Query("SELECT AVG(e.score) FROM Entry e WHERE e.malId = ?1 AND e.score > 0")
     Optional<Double> averageScoreByMalId(long malId);
 
     // Get count for each watch status
