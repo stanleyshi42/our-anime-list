@@ -12,15 +12,17 @@ import java.util.Optional;
 public interface EntryRepository extends JpaRepository<Entry, Long> {
     List<Entry> findByUserId(long userId);
     List<Entry> findByMalId(long malId);
+    Optional<Entry> findByUserIdAndMalId(long userId, long malId);
     List<Entry> findByUserIdAndFavoriteTrue(long userId);
 
+    // Sitewide stat aggregation for a specific anime
     @Query("SELECT COUNT(*) FROM Entry e WHERE e.malId = ?1")
     Optional<Integer> countByMalId(long malId);
 
     @Query("SELECT AVG(e.score) FROM Entry e WHERE e.malId = ?1")
     Optional<Double> averageScoreByMalId(long malId);
 
-    // Gets count for each watch status
+    // Get count for each watch status
     @Query("SELECT e.status, COUNT(*) FROM Entry e WHERE e.malId = ?1 GROUP BY e.status ORDER BY e.status")
     int[][] countStatusByMalId(long malId);
 

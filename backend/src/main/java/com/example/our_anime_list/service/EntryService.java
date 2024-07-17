@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EntryService {
@@ -27,6 +28,10 @@ public class EntryService {
 
     public List<Entry> getEntriesByMalId(long malId) {
         return repo.findByMalId(malId);
+    }
+
+    public Entry getEntryByUserIdAndMalId(long userId, long malId) {
+        return repo.findByUserIdAndMalId(userId, malId).orElse(null);
     }
 
     public List<Entry> getFavoriteEntriesByUserId(long userId){
