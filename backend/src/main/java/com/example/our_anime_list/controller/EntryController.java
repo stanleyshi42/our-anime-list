@@ -33,7 +33,7 @@ public class EntryController {
         entry.setUserId(userService.getByUsername(username).getId());
 
         // Check if user already has this anime in their list
-        if(entryService.getEntryByUserIdAndMalId(entry.getUserId(), entry.getMalId()) != null)
+        if (entryService.getEntryByUserIdAndMalId(entry.getUserId(), entry.getMalId()) != null)
             return ResponseEntity.status(400).body("Error: Anime already present in list");
 
         // Data validation

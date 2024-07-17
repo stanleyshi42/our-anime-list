@@ -23,17 +23,13 @@ public class AnimeStatController {
     EntryController entryController;
 
     @GetMapping("/{malId}")
-    public ResponseEntity<?> getStats(@PathVariable long malId) {
+    public AnimeStat getStats(@PathVariable long malId) {
+
         int count = statsService.countByMalId(malId);
         int favorites = statsService.countFavoritesByMalId(malId);
-
-        // If there are no entries for this MAL ID, return 404
-        //if (count == 0)
-        //    return ResponseEntity.status(404).body("No data found for anime ID: " + malId);
-
         double average = statsService.averageScoreByMalId(malId);
         HashMap<WatchStatus, Integer> watchingCount = statsService.countStatusByMalId(malId);
 
-        return ResponseEntity.ok(new AnimeStat(malId, count, favorites, average, watchingCount));
+        return new AnimeStat(malId, count, favorites, average, watchingCount);
     }
 }

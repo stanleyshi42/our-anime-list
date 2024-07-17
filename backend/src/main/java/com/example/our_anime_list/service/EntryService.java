@@ -18,7 +18,7 @@ public class EntryService {
         return repo.save(entry);
     }
 
-    public Entry getEntryById(long id){
+    public Entry getEntryById(long id) {
         return repo.findById(id).orElse(null);
     }
 
@@ -34,7 +34,7 @@ public class EntryService {
         return repo.findByUserIdAndMalId(userId, malId).orElse(null);
     }
 
-    public List<Entry> getFavoriteEntriesByUserId(long userId){
+    public List<Entry> getFavoriteEntriesByUserId(long userId) {
         return repo.findByUserIdAndFavoriteTrue(userId);
     }
 
