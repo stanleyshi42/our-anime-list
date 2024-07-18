@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class AnimeStatService {
@@ -14,12 +13,16 @@ public class AnimeStatService {
     @Autowired
     EntryRepository entryRepository;
 
-    public Integer countByMalId(long malId) {
-        return entryRepository.countByMalId(malId).orElse(null);
+    public int countByMalId(long malId) {
+        return entryRepository.countByMalId(malId).orElse(0);
     }
 
-    public Double averageScoreByMalId(long malId) {
-        return entryRepository.averageScoreByMalId(malId).orElse(null);
+    public int countFavoritesByMalId(long malId) {
+        return entryRepository.countFavoritesByMalId(malId).orElse(0);
+    }
+
+    public double averageScoreByMalId(long malId) {
+        return entryRepository.averageScoreByMalId(malId).orElse(0.0);
     }
 
     // Returns a HashMap with count for each watch status

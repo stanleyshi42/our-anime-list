@@ -24,7 +24,18 @@ public class EntryController {
     UserService userService;
 
     @PostMapping()
-    public Entry addEntry(@RequestBody Entry entry) {
+    public ResponseEntity addEntry(@RequestBody Entry entry) {
+
+        // From security context, get username so that we can get user ID
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        entry.setUserId(userService.getByUsername(username).getId());
+
+        // Check if user already has this anime in their list
+        if (entryService.getEntryByUserIdAndMalId(entry.getUserId(), entry.getMalId()) != null)
+            return ResponseEntity.status(400).body("Error: Anime already present in list");
+
+        // Data validation
         entry.setId(0); // Ensure that ID is auto-generated
         if (entry.getStatus() == null)
             entry.setStatus(WatchStatus.PLAN_TO_WATCH);
@@ -33,12 +44,8 @@ public class EntryController {
         if (entry.getScore() > 100)
             entry.setScore(100);
 
-        // From security context, get username so that we can get user ID
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        entry.setUserId(userService.getByUsername(username).getId());
-
-        return entryService.addEntry(entry);
+        Entry result = entryService.addEntry(entry);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping()

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/stats/anime")
@@ -24,15 +23,14 @@ public class AnimeStatController {
     EntryController entryController;
 
     @GetMapping("/{malId}")
-    public ResponseEntity<?> getStats(@PathVariable long malId) {
-        Integer count = statsService.countByMalId(malId);
-        // If there are no entries for this MAL ID, return 404
-        if (count == 0)
-            return ResponseEntity.status(404).body("No data found for anime ID: " + malId);
+    public AnimeStat getStats(@PathVariable long malId) {
 
-        Double average = statsService.averageScoreByMalId(malId);
+        int count = statsService.countByMalId(malId);
+        int favorites = statsService.countFavoritesByMalId(malId);
+        double average = statsService.averageScoreByMalId(malId);
         HashMap<WatchStatus, Integer> watchingCount = statsService.countStatusByMalId(malId);
 
-        return ResponseEntity.ok(new AnimeStat(malId, count, average, watchingCount));
+        return new AnimeStat(malId, count, favorites, average, watchingCount);
     }
+
 }

@@ -14,10 +14,8 @@ public class AnimeStat {
 
     private long malId;
     private int users;
+    private int favorites;
     private double averageScore;
     private Map<WatchStatus, Integer> watchStatus;
-
-    //TODO
-    //private int favorites;
 
 }
