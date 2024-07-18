@@ -7,11 +7,17 @@ import { HomeComponent } from './home/home.component';
 
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
+import { ListComponent } from './list/list.component';
+import { AnimeComponent } from './anime/anime.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent,
+    ListComponent,
+    AnimeComponent
   ],
   imports: [
     BrowserModule,
