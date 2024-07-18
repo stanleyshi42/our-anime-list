@@ -27,7 +27,7 @@ public class UserStatController {
         int totalPlanned = statService.countByTotalPlanned(userId);
         int totalWatching = statService.countByTotalWatching(userId);
         String commonGenre = statService.mostCommonGenre(userId);
-
+        // still in progress
         return new UserStat(favorites, totalPlanned, totalCompleted, totalDropped, totalWatching,commonGenre);
     }
 
