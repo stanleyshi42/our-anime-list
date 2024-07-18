@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/entry")
+@RequestMapping("")
 public class EntryController {
 
     @Autowired
@@ -23,8 +23,12 @@ public class EntryController {
     @Autowired
     UserService userService;
 
-    @PostMapping()
+    @PostMapping("/entry")
     public ResponseEntity addEntry(@RequestBody Entry entry) {
+
+        // Check if MalID is valid
+        if (entry.getMalId() <= 0)
+            return ResponseEntity.status(400).body("Error: MAL ID must be at least 1");
 
         // From security context, get username so that we can get user ID
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -43,33 +47,36 @@ public class EntryController {
             entry.setScore(0);
         if (entry.getScore() > 100)
             entry.setScore(100);
+        if (entry.getGenres() == null)
+            entry.setGenres(new String[]{});
 
         Entry result = entryService.addEntry(entry);
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping()
-    public ArrayList<Entry> getEntriesByUserId(@RequestBody long userId) {
+    @GetMapping("/users/{userId}/list")
+    public ArrayList<Entry> getEntriesByUserId(@PathVariable long userId) {
         return (ArrayList<Entry>) entryService.getEntriesByUserId(userId);
     }
 
-    @GetMapping("/favorite")
-    public ArrayList<Entry> getFavoriteEntriesByUserId(@RequestBody long userId) {
+    @GetMapping("/users/{userId}/favorites")
+    public ArrayList<Entry> getFavoriteEntriesByUserId(@PathVariable long userId) {
         return (ArrayList<Entry>) entryService.getFavoriteEntriesByUserId(userId);
     }
 
-    @GetMapping("/all")
+    // Only used for debugging
+    @GetMapping("/entry")
     public ArrayList<Entry> getAllEntries() {
         return (ArrayList<Entry>) entryService.getAll();
     }
 
-    @PutMapping()
+    @PutMapping("/entry")
     public Entry updateEntry(@RequestBody Entry entry) {
         return entryService.updateEntry(entry);
     }
 
-    @DeleteMapping()
-    public ResponseEntity deleteEntryById(@RequestBody long id) {
+    @DeleteMapping("/entry/{id}")
+    public ResponseEntity deleteEntryById(@PathVariable long id) {
         entryService.deleteEntryById(id);
         return new ResponseEntity(HttpStatusCode.valueOf(204));
     }
