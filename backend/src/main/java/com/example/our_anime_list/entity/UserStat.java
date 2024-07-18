@@ -13,8 +13,11 @@ import java.util.Map;
 public class UserStat {
 
     private String username;
-    private int hoursWatched;
+    private int totalHoursWatched;
     private int totalFavorites;
-    private int mostWatched;
-    private int totalTime;
+    private int mostWatchedGenre;
+    private int totalCurrentlyWatching;
+    private int totalCompleted;
+    private int totalPlannedToWatch;
+    private int totalDropped;
 }

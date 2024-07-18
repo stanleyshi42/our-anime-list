@@ -10,8 +10,28 @@ public class UserStatService {
     @Autowired
     UserRepository userRepository;
 
+    public int mostCommonGenre(long userId){
+        return userRepository.mostCommonGenre(userId).orElse(0);
+    }
 
+    public int countByTotalFavorites(long userId){
+        return userRepository.countByTotalFavorites(userId).orElse(0);
+    }
 
+    public int countByTotalWatching(long userId){
+        return userRepository.countByTotalWatching(userId).orElse(0);
+    }
 
+    public int countByTotalCompleted(long userId){
+        return userRepository.countByTotalCompleted(userId).orElse(0);
+    }
+
+    public int countByTotalPlanned(long userId){
+        return userRepository.countByTotalPlanned(userId).orElse(0);
+    }
+
+    public int countByTotalDropped(long userId){
+        return userRepository.countByTotalDropped(userId).orElse(0);
+    }
 
 }
