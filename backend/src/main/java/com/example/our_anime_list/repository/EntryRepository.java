@@ -12,18 +12,23 @@ import java.util.Optional;
 public interface EntryRepository extends JpaRepository<Entry, Long> {
     List<Entry> findByUserId(long userId);
     List<Entry> findByMalId(long malId);
+    Optional<Entry> findByUserIdAndMalId(long userId, long malId);
     List<Entry> findByUserIdAndFavoriteTrue(long userId);
+
+    // Site wide stat aggregation for a specific anime
 
     @Query("SELECT COUNT(*) FROM Entry e WHERE e.malId = ?1")
     Optional<Integer> countByMalId(long malId);
-    @Query("SELECT AVG(e.score) FROM Entry e WHERE e.malId = ?1")
+
+    @Query("SELECT COUNT(*) FROM Entry e WHERE e.malId = ?1 AND e.favorite = TRUE")
+    Optional<Integer> countFavoritesByMalId(long malId);
+
+    // Get average score, ignoring a score of 0
+    @Query("SELECT AVG(e.score) FROM Entry e WHERE e.malId = ?1 AND e.score > 0")
     Optional<Double> averageScoreByMalId(long malId);
 
-    @Query("SELECT AVG(e.score) FROM Entry e WHERE e.userId = ?1")
-    Optional<Double> averageScoreByUserId(long userId);
-
-    @Query("SELECT SUM(e.totalEpisodes) FROM Entry e WHERE e.user.Id =?1")
-    Optional<Integer> totalEpisodesWatchedByUserId(long userId);
-
+    // Get count for each watch status
+    @Query("SELECT e.status, COUNT(*) FROM Entry e WHERE e.malId = ?1 GROUP BY e.status ORDER BY e.status")
+    int[][] countStatusByMalId(long malId);
 
 }
