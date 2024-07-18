@@ -10,8 +10,8 @@ public class UserStatService {
     @Autowired
     UserRepository userRepository;
 
-    public int mostCommonGenre(long userId){
-        return userRepository.mostCommonGenre(userId).orElse(0);
+    public String mostCommonGenre(long userId){
+        return userRepository.mostCommonGenre(userId).orElse(null);
     }
 
     public int countByTotalFavorites(long userId){

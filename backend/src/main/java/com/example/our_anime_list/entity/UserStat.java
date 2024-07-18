@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
 
 // Stores various stats for an anime
 @Data
@@ -20,4 +19,8 @@ public class UserStat {
     private int totalCompleted;
     private int totalPlannedToWatch;
     private int totalDropped;
+
+
+    public UserStat(int favorites, int totalPlanned, int totalCompleted, int totalDropped, int totalWatching, String commonGenre) {
+    }
 }

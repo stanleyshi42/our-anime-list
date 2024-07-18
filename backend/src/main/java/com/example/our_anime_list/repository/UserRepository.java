@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //Optional<Integer> totalTimeWatched();
 
     @Query("SELECT genres FROM Entry e GROUP BY genres ORDER BY COUNT(*) DESC LIMIT 1")
-    Optional<Integer> mostCommonGenre(long userId);
+    Optional<String> mostCommonGenre(long userId);
 
 
     @Query("SELECT COUNT(*) FROM Entry e where e.userId = ?1 and e.favorite = TRUE")
