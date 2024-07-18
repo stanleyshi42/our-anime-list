@@ -22,7 +22,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT genres FROM Entry e GROUP BY genres ORDER BY COUNT(*) DESC LIMIT 1")
     Optional<String> mostCommonGenre(long userId);
 
-
     @Query("SELECT COUNT(*) FROM Entry e where e.userId = ?1 and e.favorite = TRUE")
     Optional<Integer> countByTotalFavorites(long userId);
 
@@ -38,9 +37,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT COUNT(*) FROM Entry e where e.userId = ?1 AND e.status = 'DROPPED'")
     Optional<Integer> countByTotalDropped(long userId);
 
-
-    /*
-    @Query(value = "SELECT * from user i WHERE i.username = :username",nativeQuery = true)
-    ArrayList<User> findByUsername(@Param("username") String username);
-    */
 }

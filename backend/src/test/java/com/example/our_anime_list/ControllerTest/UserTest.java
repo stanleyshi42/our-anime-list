@@ -35,9 +35,6 @@ public class UserTest {
         assertThat(controller).isNotNull();
     }
 
-    
-
-
     @Test
     public void test_returns_user_when_username_exists() {
         UserService userService = mock(UserService.class);
@@ -70,6 +67,5 @@ public class UserTest {
 
         assertNull(actualUser);
     }
-
 
 }

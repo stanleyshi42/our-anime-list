@@ -27,5 +27,6 @@ public class Entry {
     private WatchStatus status;
     private int score;
     private boolean favorite;
+    private int durationMinutes;
 
 }

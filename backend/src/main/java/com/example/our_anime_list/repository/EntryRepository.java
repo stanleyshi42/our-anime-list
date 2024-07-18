@@ -15,7 +15,7 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
     Optional<Entry> findByUserIdAndMalId(long userId, long malId);
     List<Entry> findByUserIdAndFavoriteTrue(long userId);
 
-    // Site wide stat aggregation for a specific anime
+    // Sitewide stat aggregation for a specific anime
 
     @Query("SELECT COUNT(*) FROM Entry e WHERE e.malId = ?1")
     Optional<Integer> countByMalId(long malId);
@@ -30,5 +30,5 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
     // Get count for each watch status
     @Query("SELECT e.status, COUNT(*) FROM Entry e WHERE e.malId = ?1 GROUP BY e.status ORDER BY e.status")
     int[][] countStatusByMalId(long malId);
-
+  
 }

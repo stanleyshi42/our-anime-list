@@ -23,4 +23,5 @@ public class LoggingAspect {
     public void logAfterController(JoinPoint joinPoint, Object result) {
         log.info("Controller Method executed: " + joinPoint.getSignature().getName() + ", Return: " + result);
     }
+
 }
