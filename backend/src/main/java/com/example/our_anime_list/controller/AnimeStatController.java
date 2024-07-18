@@ -32,4 +32,5 @@ public class AnimeStatController {
 
         return new AnimeStat(malId, count, favorites, average, watchingCount);
     }
+
 }

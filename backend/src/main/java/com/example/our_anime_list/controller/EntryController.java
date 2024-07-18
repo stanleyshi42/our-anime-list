@@ -5,7 +5,6 @@ import com.example.our_anime_list.entity.WatchStatus;
 import com.example.our_anime_list.service.EntryService;
 import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
