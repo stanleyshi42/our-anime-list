@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  anime: any[] = ['5114', '16498', '21'];  // Anime to display; iniitalized with default IDs
+  anime: any[] = ['5114', '16498', '21','5114', '16498', '21','5114', '16498', '21','5114', '16498', '21','5114', '16498', '21'];  // Anime to display; iniitalized with default IDs
   data:any[] = []
   constructor(private service: JikanService, private router: Router) {}
 

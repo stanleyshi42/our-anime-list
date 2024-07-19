@@ -10,15 +10,9 @@
     width: 100vw;
     height: 100vh;
     /* background-color: #1d114e; */
-    overflow: hidden;
+    overflow: auto;
 }
-.body-area {
-    flex-grow: 1;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-    overflow: scroll;
-}
+
 
 .navbar {
     display: flex;
@@ -32,8 +26,9 @@
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
-    overflow: visible;
+    /* overflow: visible; */
     background-color: #555dd43a;
+
 }
 .nav-container {
     align-items: center;
