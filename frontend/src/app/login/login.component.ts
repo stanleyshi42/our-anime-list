@@ -17,12 +17,12 @@ export class LoginComponent {
   ngOnInit() {}
 
   // Authenticate login info and store a JWT
-  login(username: string, password: string) {
-    this.service.login(username, password).subscribe(
+  login() {
+    this.service.login(this.username, this.password).subscribe(
       (data) => {
         console.log(data);
         localStorage.setItem('jwt', data);
-        this.router.navigateByUrl('');  // Redirect to home
+        this.router.navigateByUrl(''); // Redirect to home
       },
       (error) => {
         console.log(error);

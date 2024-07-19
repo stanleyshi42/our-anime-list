@@ -2,10 +2,10 @@
   <!-- Login form -->
   <div class="row text-center">
     <div class="col">
-      <p *ngIf="invalidLogin == true; else notInvalid" class="lead text-danger">
+      <p *ngIf="invalidLogin == true; else valid" class="lead text-danger">
         Invalid Username or Password
       </p>
-      <ng-template #notInvalid>
+      <ng-template #valid>
         <p class="lead">Login</p>
       </ng-template>
     </div>
@@ -13,25 +13,23 @@
 
   <div class="row text-center">
     <div class="col">
-      <input type="text" [(ngModel)]="username" />
+      <input type="text" placeholder="Username" [(ngModel)]="username" />
     </div>
   </div>
 
   <div class="row text-center">
     <div class="col">
-      <input type="password" [(ngModel)]="password" />
+      <input type="password" placeholder="Password" [(ngModel)]="password" />
     </div>
   </div>
 
   <div class="row text-center">
     <div class="col">
-      <button class="btn btn-primary mt-2" (click)="login(username, password)">
-        Login
-      </button>
+      <button class="btn btn-primary mt-2" (click)="login()">Login</button>
     </div>
   </div>
 
-  <!-- Register button-->
+  <!-- Register button -->
   <hr />
   <div class="row text-center">
     <div class="col">
@@ -41,7 +39,7 @@
   <div class="row text-center">
     <div class="col">
       <button class="btn btn-primary mt-2" routerLink="/register">
-        Register Account
+        Register New Account
       </button>
     </div>
   </div>
