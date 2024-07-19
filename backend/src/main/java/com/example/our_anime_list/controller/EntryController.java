@@ -65,7 +65,7 @@ public class EntryController {
     }
 
     // Only used for debugging
-    @GetMapping("/entry")
+    @GetMapping("/entry/all")
     public ArrayList<Entry> getAllEntries() {
         return (ArrayList<Entry>) entryService.getAll();
     }

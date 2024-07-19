@@ -5,6 +5,7 @@ import com.example.our_anime_list.entity.User;
 import com.example.our_anime_list.service.JwtService;
 import com.example.our_anime_list.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,8 +39,16 @@ public class UserController {
     }
 
     @PostMapping()
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public ResponseEntity addUser(@RequestBody User user) {
+        user.setRoles("ROLE_USER");
+        User result;
+
+        try {
+            result = userService.addUser(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body("Error: Username already registered");
+        }
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/id/{id}")
