@@ -1,1 +1,46 @@
-<p>login works!</p>
+<div class="container pt-5">
+  <!-- Login form -->
+  <div *ngIf="invalidLogin == true" class="row text-center">
+    <div class="col">
+      <p class="text-danger">Invalid login</p>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col">
+      <input type="text" [(ngModel)]="username" />
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col">
+      <input type="password" [(ngModel)]="password" />
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col">
+      <button class="btn btn-primary mt-2" (click)="login(username, password)">
+        Login
+      </button>
+    </div>
+  </div>
+
+  <!-- Register button-->
+  <hr />
+  <div class="row text-center">
+    <div class="col">
+      <div class="lead">or</div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col">
+      <button
+        class="btn btn-primary mt-2"
+        onclick="location.href = '/register'"
+      >
+        Register Account
+      </button>
+    </div>
+  </div>
+</div>

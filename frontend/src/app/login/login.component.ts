@@ -7,17 +7,26 @@ import { UserService } from '../user.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  constructor(private service: UserService) {
-    this.login('user1', 'pass');
-  }
+  username = '';
+  password = '';
+  invalidLogin = false;
 
+  constructor(private service: UserService) {}
+
+  ngOnInit() {}
+
+  // Authenticate login info and store a JWT
   login(username: string, password: string) {
-    this.service
-      .login(username, password)
-      .subscribe((data) => console.log(data));
-  }
-
-  getUserById(id: number) {
-    this.service.getUserById(id).subscribe((data) => console.log(data));
+    this.service.login(username, password).subscribe(
+      (data) => {
+        console.log(data);
+        localStorage.setItem('jwt', data);
+        window.location.href = '';  // Redirect to home
+      },
+      (error) => {
+        console.log(error);
+        this.invalidLogin = true;
+      }
+    );
   }
 }
