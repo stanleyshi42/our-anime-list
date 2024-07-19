@@ -1,1 +1,26 @@
-<router-outlet />
+<div class = "main-page">
+    <div class="navbar">
+        <div class="nav-container">
+            <div class="col-md-4 offset-md-1">
+                <div class="logo-area">
+                    <!-- <h3>Logo</h3> -->
+                    <img class="logo" src="animeLogo.jfif"/>
+                </div>
+            </div>
+            
+            <div class="link-area">
+                <div class="link-border">
+                    <a class="link-effect" href=""><h3>About</h3></a>
+                    <a class="link-effect" href=""><h3>Login</h3></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-area">
+        <router-outlet></router-outlet>
+    </div>
+    
+</div>
+
