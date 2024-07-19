@@ -1,8 +1,13 @@
 <div class="container pt-5">
   <!-- Login form -->
-  <div *ngIf="invalidLogin == true" class="row text-center">
+  <div class="row text-center">
     <div class="col">
-      <p class="text-danger">Invalid login</p>
+      <p *ngIf="invalidLogin == true; else notInvalid" class="lead text-danger">
+        Invalid Username or Password
+      </p>
+      <ng-template #notInvalid>
+        <p class="lead">Login</p>
+      </ng-template>
     </div>
   </div>
 

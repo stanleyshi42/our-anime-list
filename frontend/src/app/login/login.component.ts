@@ -22,7 +22,7 @@ export class LoginComponent {
       (data) => {
         console.log(data);
         localStorage.setItem('jwt', data);
-        this.router.navigateByUrl(''); // Redirect to home
+        this.router.navigateByUrl('');  // Redirect to home
       },
       (error) => {
         console.log(error);
