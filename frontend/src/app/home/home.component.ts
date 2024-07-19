@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   anime: any[] = ['5114', '16498', '21'];  // Anime to display; iniitalized with default IDs
-
+  data:any[] = []
   constructor(private service: JikanService, private router: Router) {}
 
   ngOnInit() {
     for (const id of this.anime) {
       this.service.getAnimeById(id).subscribe((data) => {
         console.log(data);
-        this.anime.push(data);
+        this.data.push(data);
       });
     }
   }
