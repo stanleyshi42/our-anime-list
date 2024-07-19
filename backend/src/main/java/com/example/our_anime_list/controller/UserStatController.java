@@ -19,17 +19,17 @@ public class UserStatController {
     @Autowired
     UserController userController;
 
-    @GetMapping("/{userId}")
-    public UserStat getStats(@PathVariable long userId){
-        int favorites = statService.countByTotalFavorites(userId);
-        int totalCompleted = statService.countByTotalCompleted(userId);
-        int totalDropped = statService.countByTotalDropped(userId);
-        int totalPlanned = statService.countByTotalPlanned(userId);
-        int totalWatching = statService.countByTotalWatching(userId);
-        String commonGenre = statService.mostCommonGenre(userId);
-        // still in progress
-        return new UserStat(favorites, totalPlanned, totalCompleted, totalDropped, totalWatching,commonGenre);
-    }
+//    @GetMapping("/{userId}")
+//    public UserStat getStats(@PathVariable long userId){
+//        int favorites = statService.countByTotalFavorites(userId);
+//        int totalCompleted = statService.countByTotalCompleted(userId);
+//        int totalDropped = statService.countByTotalDropped(userId);
+//        int totalPlanned = statService.countByTotalPlanned(userId);
+//        int totalWatching = statService.countByTotalWatching(userId);
+//        String commonGenre = statService.mostCommonGenre(userId);
+//        // still in progress
+//        return new UserStat(favorites, totalPlanned, totalCompleted, totalDropped, totalWatching,commonGenre);
+//    }
 
 
 }
