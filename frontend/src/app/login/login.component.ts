@@ -18,6 +18,11 @@ export class LoginComponent {
 
   // Authenticate login info and store a JWT
   login() {
+    if (this.username == '' || this.password == '') {
+      this.invalidLogin = true;
+      return;
+    }
+
     this.service.login(this.username, this.password).subscribe(
       (data) => {
         console.log(data);
