@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent {
   password = '';
   invalidLogin = false;
 
-  constructor(private service: UserService) {}
+  constructor(private router: Router, private service: UserService) {}
 
   ngOnInit() {}
 
@@ -21,7 +22,7 @@ export class LoginComponent {
       (data) => {
         console.log(data);
         localStorage.setItem('jwt', data);
-        window.location.href = '';  // Redirect to home
+        this.router.navigateByUrl(''); // Redirect to home
       },
       (error) => {
         console.log(error);
