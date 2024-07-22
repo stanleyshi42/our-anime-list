@@ -54,4 +54,20 @@ export class ListComponent {
       if (parsedJwt.sub == this.username) this.authorized = true;
     });
   }
+
+  // Given an index for animeList[], increment that entry's episodes watched count
+  incrementEpisodesWatched(index: number) {
+    let entry = this.animeList[index];
+
+    if (entry.episodesWatched >= entry.totalEpisodes) {
+      entry.episodesWatched = entry.totalEpisodes;
+    } else entry.episodesWatched += 1;
+
+    this.entryService.updateEntry(entry).subscribe();
+  }
+
+  deleteEntry(index: number) {
+    let entry = this.animeList[index];
+    this.entryService.deleteEntryById(entry.id).subscribe();
+  }
 }
