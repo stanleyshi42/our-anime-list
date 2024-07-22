@@ -59,9 +59,9 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
-                //.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/entry", "/entry/**").authenticated())
-                //.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.PUT, "/users/**", "/entry", "/entry/**").authenticated())
-                //.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.DELETE, "/users/**", "/entry", "/entry/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/entry", "/entry/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.PUT, "/users/**", "/entry", "/entry/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.DELETE, "/users/**", "/entry", "/entry/**").authenticated())
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

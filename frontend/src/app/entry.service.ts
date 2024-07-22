@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Entry } from './entry.model';
@@ -24,7 +24,12 @@ export class EntryService {
   }
 
   updateEntry(entry: Entry): Observable<any> {
-    return this.http.put<any>(this.uri + 'entry', entry);
+    // Use JWT for authorization
+    let jwt = localStorage.getItem('jwt');
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + jwt);
+
+    return this.http.put<any>(this.uri + 'entry', entry, { headers: headers });
   }
 
   deleteEntryById(id: number): Observable<any> {
