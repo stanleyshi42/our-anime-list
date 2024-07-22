@@ -4,17 +4,20 @@
             <div class="col-md-4 offset-md-1">
                 <div class="logo-area">
                     <!-- <h3>Logo</h3> -->
-                    <img class="logo" src="animeLogo.jfif"/>
+                     <a href="/">
+                        <img class="logo" src="animeLogo.jfif"/>
+                     </a>
+                    
                 </div>
             </div>
             <div class="search-area">
-                <input class="input" type="text" placeholder="Search.." [(ngModel)] = 'search' (input) = "searchAnime()" id="search">
+                <input class="input" type="text" placeholder="Search.." [(ngModel)] = 'search'(keydown.enter) = "searchResults()" (input) = "searchAnime()" id="search">
 
                 <div class="input search-dropdown" *ngIf = "search!=''">
-                    <ng-container *ngFor = "let show of anime.data; let i = index">
+                    <ng-container *ngFor = "let show of anime?.data; let i = index">
                         <ng-container *ngIf = "i < 6">
                             <a href="{{show?.url}}">
-                                <img src = "{{show?.images.jpg.small_image_url}}">
+                                <img src = "{{show?.images.jpg.small_image_url}}" style="padding: 10px;">
                                 {{show?.title}}
                             </a>
 
@@ -24,7 +27,7 @@
                         
             
                     </ng-container>
-                    <!-- <pre>{{ anime?.data[0]?.titles | json}}</pre> -->
+                    
                 </div>
             </div>
             <div class="link-area">
@@ -35,10 +38,7 @@
             </div>
         </div>
     </div>
-    
-
         <router-outlet></router-outlet>
 
-        
 </div>
 

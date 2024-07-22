@@ -1,1 +1,22 @@
-<p>search works!</p>
+<div class="header">
+    <h1 style="color: black; font-size: 25px; align-items: center; justify-content: center;">Results for : {{search}}</h1>
+</div>
+<div class="body-area">
+    
+    <br>
+    <!-- <pre>{{anime.data[0]|json}}</pre> -->
+    <ng-container  *ngFor = "let show of anime.data; let i = index">
+        <div class="animeCard-content">
+            <div class = "animeCard">
+                <img src="{{show.images.jpg.image_url}}" width="150" style="padding-right: 10px;">
+                <div>
+                    <p>{{show.title}} </p>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+    </ng-container>
+</div>
+

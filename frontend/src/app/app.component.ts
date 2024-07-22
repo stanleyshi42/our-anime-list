@@ -23,4 +23,9 @@ export class AppComponent {
 
     });
   }
+  searchResults(){
+    console.log("redirect")
+    this.router.navigate(['/search/'+this.search])
+    this.search = ''
+  }
 }

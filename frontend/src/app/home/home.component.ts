@@ -14,7 +14,7 @@ export class HomeComponent {
 
   ngOnInit() {
     for (const id of this.anime) {
-      this.service.getAnimeById(id).subscribe((data) => {
+      this.service.getAnimeById(id)?.subscribe((data) => {
         console.log(data);
         this.data.push(data);
       });
@@ -27,5 +27,6 @@ export class HomeComponent {
       console.log(data);
       this.anime.push(data);
     });
+    console.log(anime.length)
   }
 }
