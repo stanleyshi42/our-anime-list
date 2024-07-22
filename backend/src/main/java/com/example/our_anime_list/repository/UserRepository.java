@@ -12,14 +12,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 
     //@Query("SELECT")
     //Optional<Integer> totalTimeWatched();
-
+  
     @Query("SELECT genres FROM Entry e GROUP BY genres ORDER BY COUNT(*) DESC LIMIT 1")
     Optional<String> mostCommonGenre(long userId);
 

@@ -28,5 +28,4 @@ public class UserStatController {
         return new UserStat(favorites,commonGenre, totalCompleted, totalDropped, totalPlanned, totalWatching);
     }
 
-
 }
