@@ -14,13 +14,14 @@ public class UserStat {
     private String username;
     private int totalHoursWatched;
     private int totalFavorites;
-    private int mostWatchedGenre;
+    private String mostWatchedGenre;
     private int totalCurrentlyWatching;
     private int totalCompleted;
     private int totalPlannedToWatch;
     private int totalDropped;
 
 
-    public UserStat(int favorites, int totalPlanned, int totalCompleted, int totalDropped, int totalWatching, String commonGenre) {
+    public UserStat(int favorites, String mostWatchedGenre, int totalCompleted , int totalDropped
+            , int totalFavorites, int totalCurrentlyWatching) {
     }
 }
