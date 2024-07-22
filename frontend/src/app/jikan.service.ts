@@ -14,6 +14,10 @@ export class JikanService {
     return this.http.get<any>(this.uri + 'anime/' + id);
   }
 
+  getTopAnime(): Observable<any> {
+    return this.http.get<any>(this.uri + 'top/anime');
+  }
+
   searchAnime(anime: string): Observable<any> {
     return this.http.get<any>(this.uri + 'anime?q=' + anime);
   }
