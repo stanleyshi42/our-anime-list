@@ -24,7 +24,7 @@ export class EntryService {
   }
 
   updateEntry(entry: Entry): Observable<any> {
-    return this.http.put<any>(this.uri + 'entry/' + entry.id, entry);
+    return this.http.put<any>(this.uri + 'entry', entry);
   }
 
   deleteEntryById(id: number): Observable<any> {

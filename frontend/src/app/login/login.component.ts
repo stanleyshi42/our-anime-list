@@ -25,7 +25,6 @@ export class LoginComponent {
 
     this.service.login(this.username, this.password).subscribe(
       (data) => {
-        console.log(data);
         localStorage.setItem('jwt', data);
         this.router.navigateByUrl(''); // Redirect to home
       },

@@ -20,12 +20,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig implements WebMvcConfigurer {
+public class SecurityConfig {
 
     @Autowired
     private JwtAuthFilter authFilter;
@@ -57,11 +56,11 @@ public class SecurityConfig implements WebMvcConfigurer {
     // Configuring HttpSecurity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
+        return http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/entry", "/entry/**").authenticated())
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.PUT, "/users/**", "/entry", "/entry/**").authenticated())
                 .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.DELETE, "/users/**", "/entry", "/entry/**").authenticated())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/users", "/users/**", "/entry", "/entry/**").permitAll())
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
