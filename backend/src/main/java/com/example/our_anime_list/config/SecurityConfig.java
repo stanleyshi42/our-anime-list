@@ -19,12 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
+public class SecurityConfig implements WebMvcConfigurer {
 
     @Autowired
     private JwtAuthFilter authFilter;
@@ -58,19 +59,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/entry", "/entry/**").authenticated())
-                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.PUT, "/users/**", "/entry", "/entry/**").authenticated())
-                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.DELETE, "/users/**", "/entry", "/entry/**").authenticated())
+                //.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/entry", "/entry/**").authenticated())
+                //.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.PUT, "/users/**", "/entry", "/entry/**").authenticated())
+                //.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.DELETE, "/users/**", "/entry", "/entry/**").authenticated())
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-                // Disable CORS
-                .cors(httpSecurityCorsConfigurer ->
-                        httpSecurityCorsConfigurer.configurationSource(request ->
-                                new CorsConfiguration().applyPermitDefaultValues())
-                )
                 .build();
+    }
+
+    // Configure CORS to allow all
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedMethods("*");
     }
 
 }
