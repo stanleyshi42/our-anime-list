@@ -54,6 +54,11 @@ public class EntryController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/entry/{id}")
+    public Entry getEntryById(@PathVariable long id){
+        return entryService.getEntryById(id);
+    }
+
     @GetMapping("/users/{userId}/list")
     public ArrayList<Entry> getEntriesByUserId(@PathVariable long userId) {
         return (ArrayList<Entry>) entryService.getEntriesByUserId(userId);

@@ -1,0 +1,49 @@
+<div class="container pt-5">
+  <!-- Register form -->
+  <div class="row text-center">
+    <div class="col">
+      <p
+        *ngIf="invalidUsername == true; else validUsername"
+        class="lead text-danger"
+      >
+        Username already taken
+      </p>
+      <ng-template #validUsername>
+        <p class="lead">Register</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col">
+      <input type="text" placeholder="Username" [(ngModel)]="username" />
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col">
+      <input type="password" placeholder="Password" [(ngModel)]="password" />
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col">
+      <button class="btn btn-primary mt-2" (click)="register()">
+        Register
+      </button>
+    </div>
+  </div>
+
+  <!-- Login button -->
+  <hr />
+  <div class="row text-center">
+    <div class="col">
+      <div class="lead">Already signed up?</div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col">
+      <button class="btn btn-primary mt-2" routerLink="/login">Login</button>
+    </div>
+  </div>
+</div>
