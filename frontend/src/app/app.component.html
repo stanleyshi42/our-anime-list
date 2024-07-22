@@ -7,8 +7,25 @@
                     <img class="logo" src="animeLogo.jfif"/>
                 </div>
             </div>
-            <div>
-                <input class="input" type="text" placeholder="Search.." >
+            <div class="search-area">
+                <input class="input" type="text" placeholder="Search.." [(ngModel)] = 'search' (input) = "searchAnime()" id="search">
+
+                <div class="input search-dropdown" *ngIf = "search!=''">
+                    <ng-container *ngFor = "let show of anime.data; let i = index">
+                        <ng-container *ngIf = "i < 6">
+                            <a href="{{show?.url}}">
+                                <img src = "{{show?.images.jpg.small_image_url}}">
+                                {{show?.title}}
+                            </a>
+
+                            <br>
+
+                        </ng-container>
+                        
+            
+                    </ng-container>
+                    <!-- <pre>{{ anime?.data[0]?.titles | json}}</pre> -->
+                </div>
             </div>
             <div class="link-area">
                 <div class="link-border">
@@ -16,16 +33,12 @@
                     <a class="link-effect" href=""><h3>Login</h3></a>
                 </div>
             </div>
-            
         </div>
     </div>
-
+    
 
         <router-outlet></router-outlet>
 
         
-        
-    
-    
 </div>
 

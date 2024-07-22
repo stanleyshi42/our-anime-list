@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { ListComponent } from './list/list.component';
 import { AnimeComponent } from './anime/anime.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AnimeComponent } from './anime/anime.component';
     HomeComponent,
     UserComponent,
     ListComponent,
-    AnimeComponent
+    AnimeComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

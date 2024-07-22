@@ -10,5 +10,17 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'our-anime-list';
 
-  constructor(private router: Router) {}
+  constructor(private service: JikanService, private router: Router) {}
+  anime:any = []
+  search:string = ''
+  
+  searchAnime() {
+    console.log(this.search)
+    this.anime = [];
+    this.service.searchAnime(this.search).subscribe((data) => {
+      console.log(data);
+      this.anime = data;
+
+    });
+  }
 }
