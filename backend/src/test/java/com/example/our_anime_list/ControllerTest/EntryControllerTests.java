@@ -11,7 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -33,8 +32,8 @@ public class EntryControllerTests {
     void testCRUD() {
 
         //Test create
-        Entry expectedEntry = new Entry(0, 1, 1, "test", 100, 5, WatchStatus.WATCHING, 80, false);
-        Entry actualEntry = entryService.addEntry(expectedEntry);   //Entry Controller's addEntry() requires JWT, so directly call service instead
+        Entry expectedEntry = new Entry(0, 1, 1, "test", 100, 5, new String[]{"Action"}, WatchStatus.WATCHING, 80, false, 24);
+        Entry actualEntry = entryService.addEntry(expectedEntry);   // Entry controller's addEntry() requires JWT, so directly call service instead
 
         assertEquals(expectedEntry, actualEntry);
 
