@@ -16,9 +16,6 @@ public class UserStatController {
     @Autowired
     UserStatService statService;
 
-    @Autowired
-    UserController userController;
-
     @GetMapping("/{userId}")
     public UserStat getStats(@PathVariable long userId){
         int favorites = statService.countByTotalFavorites(userId);
@@ -28,7 +25,7 @@ public class UserStatController {
         int totalWatching = statService.countByTotalWatching(userId);
         String commonGenre = statService.mostCommonGenre(userId);
         // still in progress
-        return new UserStat(favorites, totalPlanned, totalCompleted, totalDropped, totalWatching,commonGenre);
+        return new UserStat(favorites,commonGenre, totalCompleted, totalDropped, totalPlanned, totalWatching);
     }
 
 
