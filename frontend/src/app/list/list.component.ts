@@ -55,13 +55,12 @@ export class ListComponent {
     });
   }
 
-  // Given an index for animeList[], increment that entry's episodes watched count
+  // Given an index in animeList[], increment that entry's episodes watched count
   incrementEpisodesWatched(index: number) {
     let entry = this.animeList[index];
 
-    if (entry.episodesWatched >= entry.totalEpisodes) {
-      entry.episodesWatched = entry.totalEpisodes;
-    } else entry.episodesWatched += 1;
+    if (entry.episodesWatched >= entry.totalEpisodes) return;
+    else entry.episodesWatched += 1;
 
     this.entryService.updateEntry(entry).subscribe();
   }
