@@ -1,1 +1,50 @@
-<p>list works!</p>
+<div class="container mt-4 w-100">
+  <div class="row">
+    <div class="col-auto">
+      <h1>{{ username }}'s Anime List</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-auto">
+      <img src="" width="100" />
+    </div>
+    <div class="col-2">
+      <div>Title</div>
+    </div>
+    <div class="col-2">
+      <div>Progress</div>
+    </div>
+    <div class="col-1">
+      <div>Score</div>
+    </div>
+    <div class="col-2">
+      <div>Status</div>
+    </div>
+  </div>
+
+  <div
+    class="row mb-3 py-2 border border-black rounded align-items-center lead"
+    style="background-color: #555dd43a"
+    *ngFor="let entry of animeList"
+  >
+    <div class="col-auto">
+      <img src="{{ entry.imageUrl }}" width="100" />
+    </div>
+    <div class="col-2">
+      <div>{{ entry.title }}</div>
+    </div>
+    <div class="col-2">
+      <div>
+        <button class="btn btn-primary">+</button>
+        {{ entry.episodesWatched }} / {{ entry.totalEpisodes }}
+      </div>
+    </div>
+    <div class="col-1">
+      <div>{{ entry.score }}</div>
+    </div>
+    <div class="col-2">
+      <div>{{ entry.status }}</div>
+    </div>
+  </div>
+</div>

@@ -10,8 +10,8 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user/:id', component: UserComponent },
-  { path: 'user/:id/list', component: ListComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: 'users/:id/list', component: ListComponent },
   { path: 'anime/:id', component: AnimeComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
