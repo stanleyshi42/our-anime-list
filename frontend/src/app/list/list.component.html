@@ -52,8 +52,12 @@
     <div class="col-2">
       <div>{{ entry.status }}</div>
     </div>
+    <!-- Buttons for this list's user-->
     <div *ngIf="authorized" class="col-auto">
       <button class="btn btn-primary">Edit</button>
+    </div>
+    <div *ngIf="authorized" class="col-auto">
+      <button class="btn btn-danger" (click)="deleteEntry(i)">Delete</button>
     </div>
   </div>
 </div>

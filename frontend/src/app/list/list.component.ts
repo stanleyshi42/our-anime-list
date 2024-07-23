@@ -14,7 +14,7 @@ export class ListComponent {
   id!: number;
   username!: any;
   jwt = localStorage.getItem('jwt');
-  authorized: boolean = false; // Check if logged in user matches this list's user
+  authorized: boolean = false; // Tracks if logged in user matches this list's user
   animeList: any[] = [];
 
   constructor(
@@ -31,6 +31,7 @@ export class ListComponent {
 
   // Returns JSON of a JWT's contents
   parseJwt(token: any) {
+    if (token == null) return token;
     return JSON.parse(atob(token.split('.')[1]));
   }
 
@@ -50,8 +51,9 @@ export class ListComponent {
       this.username = data.username;
 
       // Check if logged in user matches this list's user
-      const parsedJwt = this.parseJwt(this.jwt);
-      if (parsedJwt.sub == this.username) this.authorized = true;
+      let parsedJwt = this.parseJwt(this.jwt);
+      if (parsedJwt != null && parsedJwt.sub == this.username)
+        this.authorized = true;
     });
   }
 
@@ -65,8 +67,11 @@ export class ListComponent {
     this.entryService.updateEntry(entry).subscribe();
   }
 
+  // Given an index in animeList[], delete that entry
   deleteEntry(index: number) {
     let entry = this.animeList[index];
-    this.entryService.deleteEntryById(entry.id).subscribe();
+    this.entryService.deleteEntryById(entry.id).subscribe(() => {
+      this.getListByUserId(this.id); // Update list after delete
+    });
   }
 }
