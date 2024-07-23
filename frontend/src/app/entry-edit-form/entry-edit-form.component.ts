@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
   styleUrl: './entry-edit-form.component.css',
 })
 export class EntryEditFormComponent {
-  @Input() entry!: Entry;
+  entry!: Entry;
 
   constructor(private router: Router, private entryService: EntryService) {}
 
   ngOnInit() {
-    //if (this.entry == null) {this.router.navigateByUrl(''); // Redirect to home
+    // Get entry to be edited
+    const currentState = this.router.lastSuccessfulNavigation;
+    this.entry = currentState?.extras.state!['data'];
+    if (this.entry == null) this.router.navigateByUrl(''); // Redirect if no entry
   }
 
   updateEntry() {

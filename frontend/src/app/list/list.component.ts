@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { EntryService } from '../entry.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Entry } from '../entry.model';
 import { UserService } from '../user.service';
 
@@ -73,5 +73,15 @@ export class ListComponent {
     this.entryService.deleteEntryById(entry.id).subscribe(() => {
       this.getListByUserId(this.id); // Update list after delete
     });
+  }
+
+  // Navigate and pass an entry object to the entry edit component
+  navigateEditEntry(entry: Entry) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: entry,
+      },
+    };
+    this.router.navigate(['/edit'], { state: { data: entry } });
   }
 }
