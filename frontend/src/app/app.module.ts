@@ -15,6 +15,7 @@ import { ListComponent } from './list/list.component';
 import { AnimeComponent } from './anime/anime.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { EntryEditFormComponent } from './entry-edit-form/entry-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
     AnimeComponent,
     LoginComponent,
     RegisterComponent,
+    EntryEditFormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
