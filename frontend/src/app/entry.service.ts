@@ -11,6 +11,13 @@ export class EntryService {
 
   constructor(private http: HttpClient) {}
 
+  // Returns a request header with authorization using JWT
+  jwtHeader(): HttpHeaders {
+    let jwt = localStorage.getItem('jwt');
+    let headers = new HttpHeaders();
+    return headers.set('Authorization', 'Bearer ' + jwt);
+  }
+
   addEntry(entry: Entry): Observable<any> {
     return this.http.post<any>(this.uri + 'entry', entry);
   }
@@ -24,15 +31,10 @@ export class EntryService {
   }
 
   updateEntry(entry: Entry): Observable<any> {
-    // Use JWT for authorization
-    let jwt = localStorage.getItem('jwt');
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + jwt);
-
-    return this.http.put<any>(this.uri + 'entry', entry, { headers: headers });
+    return this.http.put<any>(this.uri + 'entry', entry, { headers: this.jwtHeader() });
   }
 
   deleteEntryById(id: number): Observable<any> {
-    return this.http.delete<any>(this.uri + 'entry/' + id);
+    return this.http.delete<any>(this.uri + 'entry/' + id, { headers: this.jwtHeader() });
   }
 }
