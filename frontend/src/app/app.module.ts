@@ -10,23 +10,23 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { UserComponent } from './user/user.component';
 import { ListComponent } from './list/list.component';
-import { AnimeComponent } from './anime/anime.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EntryEditFormComponent } from './entry-edit-form/entry-edit-form.component';
+import { AnimeDetailsComponent } from './anime-details/anime-details.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UserComponent,
     ListComponent,
-    AnimeComponent,
     LoginComponent,
     RegisterComponent,
     EntryEditFormComponent,
+    AnimeDetailsComponent,
+    UserDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],

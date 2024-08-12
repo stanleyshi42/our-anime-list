@@ -1,31 +1,21 @@
-<div class = "main-page">
-    <div class="navbar">
-        <div class="nav-container">
-            <div class="col-md-4 offset-md-1">
-                <div class="logo-area">
-                    <!-- <h3>Logo</h3> -->
-                    <img class="logo" src="animeLogo.jfif"/>
-                </div>
-            </div>
-            <div>
-                <input class="input" type="text" placeholder="Search.." >
-            </div>
-            <div class="link-area">
-                <div class="link-border">
-                    <a class="link-effect" href=""><h3>About</h3></a>
-                    <a class="link-effect" href=""><h3>Login</h3></a>
-                </div>
-            </div>
-            
-        </div>
+<div class="navbar">
+  <div class="nav-container">
+    <div class="col-md-4 offset-md-1">
+      <div class="logo-area">
+        <!-- <h3>Logo</h3> -->
+        <img class="logo" src="animeLogo.jfif" routerLink="" />
+      </div>
     </div>
-
-
-        <router-outlet></router-outlet>
-
-        
-        
-    
-    
+    <div>
+      <input class="input" type="text" placeholder="Search.." />
+    </div>
+    <div class="link-area">
+      <div class="link-border">
+        <a class="link-effect" href=""><h3>About</h3></a>
+        <a class="link-effect" routerLink="/login"><h3>Login</h3></a>
+      </div>
+    </div>
+  </div>
 </div>
 
+<router-outlet></router-outlet>
