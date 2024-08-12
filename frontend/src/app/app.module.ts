@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { ListComponent } from './list/list.component';
 import { AnimeComponent } from './anime/anime.component';
+import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -23,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
     UserComponent,
     ListComponent,
     AnimeComponent,
+    SearchComponent
     LoginComponent,
     RegisterComponent,
   ],
