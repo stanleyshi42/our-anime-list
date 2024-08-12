@@ -28,5 +28,5 @@ public class Entry {
     private int score;
     private boolean favorite;
     private int durationMinutes;
-
+    private String imageUrl;
 }
