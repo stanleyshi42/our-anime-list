@@ -8,24 +8,23 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  anime: any[] = ['5114', '16498', '21','5114', '16498', '21','5114', '16498', '21','5114', '16498', '21','5114', '16498', '21'];  // Anime to display; iniitalized with default IDs
-  data:any[] = []
-  constructor(private service: JikanService, private router: Router) {}
+  animeIds: any[] = [5114, 16498, 21, 10087, 11061]; // Anime to display; iniitalized with default IDs
+  data: any[] = [];
+  constructor(private jikanService: JikanService, private router: Router) {}
 
   ngOnInit() {
-    for (const id of this.anime) {
-      this.service.getAnimeById(id).subscribe((data) => {
-        console.log(data);
+    for (const id of this.animeIds) {
+      this.jikanService.getAnimeById(id).subscribe((data) => {
         this.data.push(data);
       });
     }
   }
 
   searchAnime(anime: string) {
-    this.anime = [];
-    this.service.searchAnime(anime).subscribe((data) => {
+    this.animeIds = [];
+    this.jikanService.searchAnime(anime).subscribe((data) => {
       console.log(data);
-      this.anime.push(data);
+      this.animeIds.push(data);
     });
   }
 }

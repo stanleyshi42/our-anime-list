@@ -10,7 +10,6 @@ import { UserService } from '../user.service';
   styleUrl: './list.component.css',
 })
 export class ListComponent {
-  private route = inject(ActivatedRoute);
   id!: number;
   username!: any;
   jwt = localStorage.getItem('jwt');
@@ -19,6 +18,7 @@ export class ListComponent {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private entryService: EntryService,
     private userService: UserService
   ) {}
