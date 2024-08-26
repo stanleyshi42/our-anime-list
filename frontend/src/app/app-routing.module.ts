@@ -16,7 +16,6 @@ const routes: Routes = [
   { path: 'users/:id/list', component: ListComponent },
   { path: 'edit', component: EntryEditFormComponent },
   { path: 'anime/:id', component: AnimeDetailsComponent },
-  { path: 'anime/:id', component: AnimeComponent },
   { path: 'search/:anime', component:SearchComponent},
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },

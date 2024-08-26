@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   animeIds: any[] = [5114, 16498, 21, 10087, 11061]; // Anime to display; iniitalized with default IDs
   data: any[] = [];
-  constructor(private jikanService: JikanService, private router: Router) {}
+  constructor(private router: Router, private jikanService: JikanService) {}
 
   ngOnInit() {
     for (const id of this.animeIds) {
@@ -26,6 +26,6 @@ export class HomeComponent {
       console.log(data);
       this.animeIds.push(data);
     });
-    console.log(anime.length)
+    console.log(anime.length);
   }
 }
