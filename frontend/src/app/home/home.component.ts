@@ -26,5 +26,6 @@ export class HomeComponent {
       console.log(data);
       this.animeIds.push(data);
     });
+    console.log(anime.length)
   }
 }

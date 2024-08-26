@@ -11,6 +11,8 @@ import {
 } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
+import { AnimeComponent } from './anime/anime.component';
+import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EntryEditFormComponent } from './entry-edit-form/entry-edit-form.component';
@@ -22,6 +24,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     AppComponent,
     HomeComponent,
     ListComponent,
+    AnimeComponent,
+    SearchComponent
     LoginComponent,
     RegisterComponent,
     EntryEditFormComponent,
