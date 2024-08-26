@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EntryEditFormComponent } from './entry-edit-form/entry-edit-form.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserDetailsComponent } from './user-details/user-details.component'; 
 
 @NgModule({
   declarations: [
