@@ -11,21 +11,20 @@ export class AppComponent {
   title = 'our-anime-list';
 
   constructor(private service: JikanService, private router: Router) {}
-  anime:any = []
-  search:string = ''
-  
+  anime: any = [];
+  search: string = '';
+
   searchAnime() {
-    console.log(this.search)
+    console.log(this.search);
     this.anime = [];
     this.service.searchAnime(this.search).subscribe((data) => {
       console.log(data);
       this.anime = data;
-
     });
   }
-  searchResults(){
-    console.log("redirect")
-    this.router.navigate(['/search/'+this.search])
-    this.search = ''
+  searchResults() {
+    console.log('redirect');
+    this.router.navigate(['/search/' + this.search]);
+    this.search = '';
   }
 }

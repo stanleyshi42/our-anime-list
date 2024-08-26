@@ -1,0 +1,48 @@
+<div class="container mt-5" *ngIf="animeDetails">
+  <div class="row">
+    <!-- Left column -->
+    <div class="col-3">
+      <div class="row">
+        <img
+          src="{{ animeDetails.data.images.jpg.large_image_url }}"
+          class="img-fluid p-0"
+        />
+      </div>
+      <div class="row">
+        <button class="btn btn-primary mt-2">Add To List</button>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div class="col-9">
+      <div class="row">
+        <h1>{{ animeDetails.data.title }}</h1>
+      </div>
+      <div class="row my-3">
+        <div class="col-auto text-center">
+          <div class="border border-black p-2">
+            <div class="">Average User Score</div>
+            <div class="fs-1">{{ animeStats.averageScore }}</div>
+          </div>
+        </div>
+        <div class="col-auto text-center">
+          <div class="border border-black p-2">
+            <div class="border-bottom border-black">
+              {{ animeStats.users }} Users
+            </div>
+            <div>{{ animeStats.watchStatus.COMPLETED }} Completed</div>
+            <div>{{ animeStats.watchStatus.WATCHING }} Watching</div>
+            <div>{{ animeStats.watchStatus.PLAN_TO_WATCH }} Plan to Watch</div>
+            <div>{{ animeStats.watchStatus.PAUSED }} Paused</div>
+            <div>{{ animeStats.watchStatus.DROPPED }} Dropped</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <span style="white-space: pre-line; font-size: 15px">
+          {{ animeDetails.data.synopsis }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

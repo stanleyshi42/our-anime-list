@@ -1,44 +1,46 @@
-<div class = "main-page">
-    <div class="navbar">
-        <div class="nav-container">
-            <div class="col-md-4 offset-md-1">
-                <div class="logo-area">
-                    <!-- <h3>Logo</h3> -->
-                     <a href="/">
-                        <img class="logo" src="animeLogo.jfif"/>
-                     </a>
-                    
-                </div>
-            </div>
-            <div class="search-area">
-                <input class="input" type="text" placeholder="Search.." [(ngModel)] = 'search'(keydown.enter) = "searchResults()" (input) = "searchAnime()" id="search">
-
-                <div class="input search-dropdown" *ngIf = "search!=''">
-                    <ng-container *ngFor = "let show of anime?.data; let i = index">
-                        <ng-container *ngIf = "i < 6">
-                            <a href="{{show?.url}}">
-                                <img src = "{{show?.images.jpg.small_image_url}}" style="padding: 10px;">
-                                {{show?.title}}
-                            </a>
-
-                            <br>
-
-                        </ng-container>
-                        
-            
-                    </ng-container>
-                    
-                </div>
-            </div>
-            <div class="link-area">
-                <div class="link-border">
-                    <a class="link-effect" href=""><h3>About</h3></a>
-                    <a class="link-effect" href=""><h3>Login</h3></a>
-                </div>
-            </div>
+<div class="main-page">
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="col-md-4 offset-md-1">
+        <div class="logo-area">
+          <img class="logo" src="animeLogo.jfif" routerLink="" />
         </div>
+      </div>
+      <div class="search-area">
+        <input
+          class="input"
+          type="text"
+          placeholder="Search.."
+          [(ngModel)]="search"
+          (keydown.enter)="searchResults()"
+          (input)="searchAnime()"
+          id="search"
+          autocomplete="off"
+        />
+
+        <div class="input search-dropdown" *ngIf="search != ''">
+          <ng-container *ngFor="let show of anime?.data; let i = index">
+            <ng-container *ngIf="i < 6">
+              <a href="{{ show?.url }}">
+                <img
+                  src="{{ show?.images.jpg.small_image_url }}"
+                  style="padding: 10px"
+                />
+                {{ show?.title }}
+              </a>
+
+              <br />
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <div class="link-area">
+        <div class="link-border">
+          <a class="link-effect"><h3>About</h3></a>
+          <a class="link-effect" routerLink="/login"><h3>Login</h3></a>
+        </div>
+      </div>
     </div>
-        <router-outlet></router-outlet>
-
+  </div>
+  <router-outlet></router-outlet>
 </div>
-

@@ -30,21 +30,20 @@
     style="background-color: #555dd43a"
   >
     <div class="col-auto">
-      <img src="{{ entry.imageUrl }}" width="100" />
+      <img src="{{ entry.imageUrl }}" width="100px" />
     </div>
     <div class="col-2">
       <div>{{ entry.title }}</div>
     </div>
     <div class="col-2">
       <div>
-        <button
+        <span
           *ngIf="authorized"
-          class="btn btn-primary"
           (click)="incrementEpisodesWatched(i)"
+          style="cursor: pointer; user-select: none"
+          >⬆️</span
         >
-          +
-        </button>
-        {{ entry.episodesWatched }} / {{ entry.totalEpisodes }}
+        <span>{{ entry.episodesWatched }} / {{ entry.totalEpisodes }}</span>
       </div>
     </div>
     <div class="col-1">
@@ -53,8 +52,14 @@
     <div class="col-2">
       <div>{{ entry.status }}</div>
     </div>
+    <!-- Buttons for this list's user-->
     <div *ngIf="authorized" class="col-auto">
-      <button class="btn btn-primary">Edit</button>
+      <button class="btn btn-primary" (click)="navigateEditEntry(entry)">
+        Edit
+      </button>
+    </div>
+    <div *ngIf="authorized" class="col-auto">
+      <button class="btn btn-danger" (click)="deleteEntry(i)">Delete</button>
     </div>
   </div>
 </div>

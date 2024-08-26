@@ -1,0 +1,49 @@
+<div class="container border border-black rounded mt-3 pb-3">
+  <div class="row lead">
+    <div class="col">Edit Entry</div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 offset-2">
+      <div>Title</div>
+    </div>
+    <div class="col-2">
+      <div>{{ entry.title }}</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 offset-2">
+      <div>Status</div>
+    </div>
+    <div class="col-2">
+      <select [(ngModel)]="entry.status">
+        <option value="WATCHING">WATCHING</option>
+        <option value="COMPLETED">COMPLETED</option>
+        <option value="PAUSED">PAUSED</option>
+        <option value="DROPPED">DROPPED</option>
+        <option value="PLAN_TO_WATCH">PLAN_TO_WATCH</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 offset-2">
+      <div>Episodes Watched</div>
+    </div>
+    <div class="col-2">
+      <input type="text" [(ngModel)]="entry.episodesWatched" />
+      /{{ entry.totalEpisodes }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 offset-2">
+      <div>Score (1-100)</div>
+      <div>(0 for no score)</div>
+    </div>
+    <div class="col-2">
+      <input type="text" [(ngModel)]="entry.score" />
+    </div>
+  </div>
+</div>

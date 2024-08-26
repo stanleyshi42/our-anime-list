@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { EntryService } from '../entry.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Entry } from '../entry.model';
 import { UserService } from '../user.service';
 
@@ -10,15 +10,15 @@ import { UserService } from '../user.service';
   styleUrl: './list.component.css',
 })
 export class ListComponent {
-  private route = inject(ActivatedRoute);
   id!: number;
   username!: any;
   jwt = localStorage.getItem('jwt');
-  authorized: boolean = false; // Check if logged in user matches this list's user
+  authorized: boolean = false; // Tracks if logged in user matches this list's user
   animeList: any[] = [];
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private entryService: EntryService,
     private userService: UserService
   ) {}
@@ -31,6 +31,7 @@ export class ListComponent {
 
   // Returns JSON of a JWT's contents
   parseJwt(token: any) {
+    if (token == null) return token;
     return JSON.parse(atob(token.split('.')[1]));
   }
 
@@ -50,24 +51,37 @@ export class ListComponent {
       this.username = data.username;
 
       // Check if logged in user matches this list's user
-      const parsedJwt = this.parseJwt(this.jwt);
-      if (parsedJwt.sub == this.username) this.authorized = true;
+      let parsedJwt = this.parseJwt(this.jwt);
+      if (parsedJwt != null && parsedJwt.sub == this.username)
+        this.authorized = true;
     });
   }
 
-  // Given an index for animeList[], increment that entry's episodes watched count
+  // Given an index in animeList[], increment that entry's episodes watched count
   incrementEpisodesWatched(index: number) {
     let entry = this.animeList[index];
 
-    if (entry.episodesWatched >= entry.totalEpisodes) {
-      entry.episodesWatched = entry.totalEpisodes;
-    } else entry.episodesWatched += 1;
+    if (entry.episodesWatched >= entry.totalEpisodes) return;
+    else entry.episodesWatched += 1;
 
     this.entryService.updateEntry(entry).subscribe();
   }
 
+  // Given an index in animeList[], delete that entry
   deleteEntry(index: number) {
     let entry = this.animeList[index];
-    this.entryService.deleteEntryById(entry.id).subscribe();
+    this.entryService.deleteEntryById(entry.id).subscribe(() => {
+      this.getListByUserId(this.id); // Update list after delete
+    });
+  }
+
+  // Navigate and pass an entry object to the entry edit component
+  navigateEditEntry(entry: Entry) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: entry,
+      },
+    };
+    this.router.navigate(['/edit'], { state: { data: entry } });
   }
 }

@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AnimeComponent } from './anime/anime.component';
-import { UserComponent } from './user/user.component';
 import { ListComponent } from './list/list.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { EntryEditFormComponent } from './entry-edit-form/entry-edit-form.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'users/:id', component: UserComponent },
+  { path: 'users/:id', component: UserDetailsComponent },
   { path: 'users/:id/list', component: ListComponent },
-  { path: 'anime/:id', component: AnimeComponent },
+  { path: 'edit', component: EntryEditFormComponent },
+  { path: 'anime/:id', component: AnimeDetailsComponent },
   { path: 'search/:anime', component:SearchComponent},
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
