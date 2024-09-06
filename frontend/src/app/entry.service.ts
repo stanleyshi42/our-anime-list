@@ -19,7 +19,7 @@ export class EntryService {
   }
 
   addEntry(entry: Entry): Observable<any> {
-    return this.http.post<any>(this.uri + 'entry', entry);
+    return this.http.post<any>(this.uri + 'entry', entry, { headers: this.jwtHeader() });
   }
 
   getListByUserId(id: number): Observable<any> {
