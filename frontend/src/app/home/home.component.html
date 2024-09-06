@@ -2,13 +2,17 @@
   <ng-container *ngFor="let anime of data; let i = index">
     <div class="animeCard-content">
       <div class="animeCard">
-        <img
-          src="{{ anime.data.images.jpg.image_url }}"
-          width="150"
-          style="padding-right: 10px"
-        />
+        <a [routerLink]="'/anime/' + anime.data.mal_id">
+          <img
+            src="{{ anime.data.images.jpg.image_url }}"
+            width="150"
+            style="padding-right: 10px"
+          />
+        </a>
         <div>
-          <p>{{ anime.data.title }}</p>
+          <a [routerLink]="'/anime/' + anime.data.mal_id">
+            <p>{{ anime.data.title }}</p>
+          </a>
           <div class="description">
             <span style="white-space: pre-line">
               {{ anime.data.synopsis }}
