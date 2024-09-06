@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { Entry } from '../entry.model';
 import { EntryService } from '../entry.service';
 import { Router } from '@angular/router';
@@ -11,7 +12,11 @@ import { Router } from '@angular/router';
 export class EntryEditFormComponent {
   entry!: Entry;
 
-  constructor(private router: Router, private entryService: EntryService) {}
+  constructor(
+    private router: Router,
+    private location: Location,
+    private entryService: EntryService
+  ) {}
 
   ngOnInit() {
     // Get entry to be edited
@@ -20,7 +25,14 @@ export class EntryEditFormComponent {
     if (this.entry == null) this.router.navigateByUrl(''); // Redirect if no entry
   }
 
+  cancel() {
+    this.location.back();
+  }
+
   updateEntry() {
-    this.entryService.updateEntry(this.entry).subscribe();
+    this.entryService.updateEntry(this.entry).subscribe(() => {
+      // After request, go back to user's list
+      this.location.back();
+    });
   }
 }
