@@ -49,13 +49,17 @@ public class EntryController {
             entry.setScore(100);
         if (entry.getGenres() == null)
             entry.setGenres(new String[]{});
+        if (entry.getEpisodesWatched() > entry.getTotalEpisodes())
+            entry.setEpisodesWatched(entry.getTotalEpisodes());
+        if (entry.getEpisodesWatched() < 0)
+            entry.setEpisodesWatched(0);
 
         Entry result = entryService.addEntry(entry);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/entry/{id}")
-    public Entry getEntryById(@PathVariable long id){
+    public Entry getEntryById(@PathVariable long id) {
         return entryService.getEntryById(id);
     }
 
@@ -77,6 +81,15 @@ public class EntryController {
 
     @PutMapping("/entry")
     public Entry updateEntry(@RequestBody Entry entry) {
+        if (entry.getEpisodesWatched() > entry.getTotalEpisodes())
+            entry.setEpisodesWatched(entry.getTotalEpisodes());
+        if (entry.getEpisodesWatched() < 0)
+            entry.setEpisodesWatched(0);
+        if (entry.getScore() < 0)
+            entry.setScore(0);
+        if (entry.getScore() > 100)
+            entry.setScore(100);
+
         return entryService.updateEntry(entry);
     }
 

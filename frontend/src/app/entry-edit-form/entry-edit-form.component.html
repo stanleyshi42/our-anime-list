@@ -46,4 +46,13 @@
       <input type="text" [(ngModel)]="entry.score" />
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-2 offset-2">
+      <button class="btn btn-primary" (click)="updateEntry()">Save</button>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
 </div>

@@ -14,6 +14,13 @@ export class RegisterComponent {
 
   constructor(private router: Router, private service: UserService) {}
 
+  ngOnInit() {
+    // Check if already logged in
+    if (localStorage.getItem('jwt')) {
+      this.router.navigateByUrl('');
+    }
+  }
+
   register() {
     if (this.username == '' || this.password == '') return;
 
@@ -25,6 +32,7 @@ export class RegisterComponent {
           (jwt) => {
             localStorage.setItem('jwt', jwt);
             this.router.navigateByUrl(''); // Redirect to home
+            location.reload();
           },
           (error) => {
             console.log(error);

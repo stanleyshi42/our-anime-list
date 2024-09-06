@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
   styleUrl: './list.component.css',
 })
 export class ListComponent {
-  id!: number;
+  userId!: number;
   username!: any;
   jwt = localStorage.getItem('jwt');
   authorized: boolean = false; // Tracks if logged in user matches this list's user
@@ -24,9 +24,9 @@ export class ListComponent {
   ) {}
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id')); // Get user ID from URL route
-    this.username = this.getUserById(this.id);
-    this.getListByUserId(this.id);
+    this.userId = Number(this.route.snapshot.paramMap.get('id')); // Get user ID from URL route
+    this.getUserById(this.userId);
+    this.getListByUserId(this.userId);
   }
 
   // Returns JSON of a JWT's contents
@@ -71,7 +71,7 @@ export class ListComponent {
   deleteEntry(index: number) {
     let entry = this.animeList[index];
     this.entryService.deleteEntryById(entry.id).subscribe(() => {
-      this.getListByUserId(this.id); // Update list after delete
+      this.getListByUserId(this.userId); // Update list after delete
     });
   }
 
