@@ -14,7 +14,12 @@ export class LoginComponent {
 
   constructor(private router: Router, private service: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Check if already logged in
+    if (localStorage.getItem('jwt')) {
+      this.router.navigateByUrl('');
+    }
+  }
 
   // Authenticate login info and store a JWT
   login() {
@@ -27,6 +32,7 @@ export class LoginComponent {
       (data) => {
         localStorage.setItem('jwt', data);
         this.router.navigateByUrl(''); // Redirect to home
+        location.reload();
       },
       (error) => {
         console.log(error);

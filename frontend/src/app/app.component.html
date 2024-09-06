@@ -3,7 +3,9 @@
     <div class="nav-container">
       <div class="col-md-4 offset-md-1">
         <div class="logo-area">
-          <img class="logo" src="animeLogo.jfif" routerLink="" />
+          <a routerLink="">
+            <img class="logo" src="animeLogo.jfif" />
+          </a>
         </div>
       </div>
       <div class="search-area">
@@ -34,12 +36,28 @@
           </ng-container>
         </div>
       </div>
-      <div class="link-area">
+
+      <div class="link-area" *ngIf="user; else not_loggedin">
         <div class="link-border">
-          <a class="link-effect"><h3>About</h3></a>
-          <a class="link-effect" routerLink="/login"><h3>Login</h3></a>
+          <a class="link-effect" [routerLink]="'/users/' + user.id"
+            ><h3>{{ user.username }}</h3></a
+          >
+          <a class="link-effect" [routerLink]="'/users/' + user.id + '/list'"
+            ><h3>List</h3></a
+          >
+          <a class="link-effect" (click)="logout()"><h3>Logout</h3></a>
         </div>
       </div>
+
+      <ng-template #not_loggedin>
+        <div class="link-area">
+          <div class="link-border">
+            <a class="link-effect" routerLink="/login"
+              ><h3>Login/Register</h3></a
+            >
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
   <router-outlet></router-outlet>
