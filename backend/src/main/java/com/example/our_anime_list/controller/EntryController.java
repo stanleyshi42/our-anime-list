@@ -85,6 +85,11 @@ public class EntryController {
             entry.setEpisodesWatched(entry.getTotalEpisodes());
         if (entry.getEpisodesWatched() < 0)
             entry.setEpisodesWatched(0);
+        if (entry.getScore() < 0)
+            entry.setScore(0);
+        if (entry.getScore() > 100)
+            entry.setScore(100);
+
         return entryService.updateEntry(entry);
     }
 
